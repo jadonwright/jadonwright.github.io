@@ -3,15 +3,13 @@
 let cacheName = "Perceptive"
 
 let filesToCache = [
-  "/main.html",
+  "/index.html",
   "/src/style.css",
   "/src/script.js",
   "/assets/logo.ico",
   "/libs/qrcode/qrcode.js",
-  "/font/Aldrich-Regular.ttf",
-  "/font/theFont.ttf",
   "/assets/field.png",
-  "/sw.js"
+  "/manifest.json"
 ]
 
 self.addEventListener("install", function(e) {
