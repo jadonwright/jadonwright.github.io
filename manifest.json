@@ -2,7 +2,7 @@
     "name": "4405 Perceptive",
     "short_name": "Perceptive",
     "lang": "en-US",
-    "start_url": "/",
+    "start_url": "/index.html",
     "display": "standalone",
     
     "theme_color": "#bb00b8",
