@@ -1,0 +1,297 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Aldrich", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: rgb(18, 18, 18);
+}
+
+.title {
+    background-color: rgb(187, 0, 184);
+    width: 100vw;
+
+    color: white;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: fit-content;
+}
+
+.header {
+    margin: 0;
+    padding: 0;
+}
+
+.subheader {
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+
+.section-title {
+    color: purple;
+}
+
+.section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.thenInput {
+    padding-right: 5px;
+}
+
+.input-group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.input .initials {
+    height: 5px;
+
+}
+
+.input {
+    padding: 0;
+    margin: 0;
+    width: 40px;
+    background-color: rgb(40, 40, 40);
+    display: inline-block;
+    border: 2px solid purple;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: white;
+    outline-width: 0;
+    transition-duration: 0.2s;
+}
+
+
+.radio-group {
+    display: flex;
+    align-items: baseline;
+}
+
+
+#match-level .basic-label {
+    padding: 4px;
+    margin: 0;
+}
+
+.basic-label {
+    color: white;
+}
+
+#robot {
+    display: flex;
+    flex-direction: row;
+}
+
+#red {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+#blue {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+#image-container {
+    position: relative;
+    touch-action: manipulation;
+}
+
+#selected-position {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    top: 0px;
+    left: 10px;
+    touch-action: manipulation;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    touch-action: manipulation;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+    background-color: rgb(40, 40, 40);
+    border: 2px solid purple;
+    border-radius: 4px;
+    max-height: 20px;
+    overflow: hidden;
+    touch-action: manipulation;
+}
+
+button {
+    padding: 5px 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: rgb(40, 40, 40);
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: white;
+    outline-width: 0;
+    transition-duration: 0.2s;
+    touch-action: manipulation;
+}
+
+.count {
+    margin: 0 10px;
+    font-size: 1em;
+    color: white;
+    touch-action: manipulation;
+}
+
+.counter-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    touch-action: manipulation;
+}
+
+#pickup-group {
+    display: flex;
+    flex-direction: row;
+}
+
+.separator-border {
+    height: 2px !important;
+    background-color: rgb(50, 50, 50);
+    width: calc(100vw / 2);
+    margin-bottom: 5px;
+}
+
+.decrement {
+    padding: 5px;
+}
+
+#driver-skill {
+    display: flex;
+    flex-direction: column;
+}
+
+#driver-skill-group .basic-label {
+    padding: 5px;
+    margin: 0;
+}
+
+#defense-rating-group .basic-label {
+    padding: 5px;
+    margin: 0;
+}
+
+#speed-rating-group .basic-label {
+    padding: 5px;
+    margin: 0;
+}
+
+
+.floating-label {
+    display: block;
+    width: 100vw;
+    text-align: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: rgb(18, 18, 18);
+    height: 40px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    box-shadow: 0px 5px 5px rgb(18, 18, 18);
+    margin-top: 0px;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+#misc {
+    padding-left: 20px;
+    align-items: flex-start;
+}
+
+#misc .section-title {
+    align-self: center;
+}
+
+#misc .radio-group {
+    padding-left: 28px;
+}
+
+
+#final-inputs {
+    margin-top: 30px;
+    display: flex;
+    padding: 0;
+    flex-direction: column;
+    background-color: purple;
+}
+
+#final-inputs .basic-label {
+    padding: 0;
+    margin: 10px;
+}
+
+#qrcode-zone {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: stretch;
+
+}
+
+#qrcontainer {
+    overflow: hidden;
+}
+
+.comments {
+    width: max-content;
+}
+
+.comment-group p {
+    width: fit-content;
+}
+
+/* #generateQR {
+    width: calc(100vw / 2);
+    margin-bottom: 10px;
+}
+
+#resetForm {
+    width: calc(100vw / 4);
+    margin-bottom: 10px;
+} */
+
+#floor-pick {
+    margin-bottom: 0;
+}
+
+#epic-logo {
+    width: 50px;
+    height: auto;
+    float: left;
+    margin-right: 30px;
+}
+
+#epic-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #bb00b8;
+}
