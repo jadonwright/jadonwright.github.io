@@ -3,7 +3,7 @@
 let cacheName = "Perceptive"
 
 let filesToCache = [
-  "/index.html",
+  "/main.html",
   "/src/style.css",
   "/src/script.js",
   "/assets/logo.ico",
