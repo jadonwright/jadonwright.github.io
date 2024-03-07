@@ -1,0 +1,10 @@
+{
+    "name": "4405 Perceptive",
+    "short_name": "Perceptive",
+    "lang": "en-US",
+    "start_url": "/",
+    "display": "standalone",
+    
+    "theme_color": "#bb00b8",
+    "background_color": "#121212"
+  }
