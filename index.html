@@ -28,29 +28,29 @@
         </h1>
         <div class="input-group" id="initials">
             <p class="basic-label thenInput" style="color:white">Scouter Initials:</p>
-            <input class="initials input" type="text" maxlength="3" required>
+            <input class="initials input" id="scouter-initials" type="text" maxlength="3" required>
         </div>
         <div class="separator-border"></div>
 
         <div id="match-level">
             <div class="radio-group" id="levels">
-                <input class="level radio" id="Quals" type="radio" name="level">
+                <input class="level radio" id="Quals" type="radio" value="Quals" name="level">
                 <p class="basic-label" style="color:white">Quals</p>
             </div>
             <div class="radio-group" id="levels">
-                <input class="level radio" id="Semifinals" type="radio" name="level">
+                <input class="level radio" id="Semifinals" type="radio" value="Semifinals" name="level">
                 <p class="basic-label" style="color:white">Semifinals</p>
             </div>
             <div class="radio-group" id="levels">
-                <input class="level radio" id="Finals" type="radio" name="level">
+                <input class="level radio" id="Finals" type="radio" value="Finals" name="level">
                 <p class="basic-label" style="color:white">Finals</p>
             </div>
         </div>
 
         <div class="separator-border" style="margin-top:5px"></div>
         <div class="input-group" id="match-number">
-            <p class="basic-label thenInput" style="color:white">Match #:</p>
-            <input class="initials input" type="number" maxlength="4" required>
+            <p class="basic-label thenInput" id="metch" style="color:white">Match #:</p>
+            <input class="initials input" type="number" id="metch-yes" maxlength="4" required>
         </div>
 
         <div class="separator-border"></div>
@@ -88,7 +88,7 @@
         <div class="separator-border"></div>
         <div class="input-group" id="team-number">
             <p class="basic-label thenInput" style="color:white">Team #:</p>
-            <input class="initials input" type="number" maxlength="4" required>
+            <input class="initials input" id="teams-num" type="number" maxlength="4" required>
         </div>
 
         <div class="separator-border"></div>
@@ -107,7 +107,7 @@
             Autonomous</h1>
         <div class="checkbox-group" id="leave-start-zone">
             <p class="basic-label thenInput" style="color:white">Leave Starting Zone: </p>
-            <input class="initials input" type="checkbox" required>
+            <input class="initials input leave-checkbox" type="checkbox" required>
         </div>
         <div class="counter-group" id="amp-scores">
             <p class="basic-label thenInput" style="color:white">Amp Scores:</p>
@@ -250,19 +250,19 @@
     <div id="final-inputs" class="section">
         <div class="checkbox-group" id="died">
             <p class="basic-label thenInput" style="color:white">Died/Immobilized: </p>
-            <input class="initials input" type="checkbox" required>
+            <input class="initials input died" type="checkbox" required>
         </div>
         <div class="checkbox-group" id="tip">
             <p class="basic-label thenInput" style="color:white">Tippy: </p>
-            <input class="initials input" type="checkbox" required>
+            <input class="initials input tip" type="checkbox" required>
         </div>
         <div class="checkbox-group" id="dropped">
             <p class="basic-label thenInput" style="color:white">Dropped Notes (>2): </p>
-            <input class="initials input" type="checkbox" required>
+            <input class="initials input drop" type="checkbox" required>
         </div>
         <div class="comment-group">
             <p class="basic-label" style="color:white">Comments:</p>
-            <input class="comments input" type="text" required>
+            <input class="comments input" type="text" id="comments" required>
         </div>
         <div class="separator-border" style="margin: 30px"></div>
         <div id="qrcode-zone">
