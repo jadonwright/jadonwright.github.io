@@ -105,9 +105,9 @@ function getFormData() {
   var defense = getRadioData("defense");
   var speed = getRadioData("speed");
   var died = String(document.querySelector(".died").checked);
-  var tip = String(document.querySelector(".tip").checked)
-  var dropped = String(document.querySelector(".drop").checked)
-  var comments = document.getElementById("comments").value
+  var tip = String(document.querySelector(".tip").checked);
+  var dropped = String(document.querySelector(".drop").checked);
+  var comments = document.getElementById("comments").value.replace('\'', '');
   let data = [initial, level, match, location, team, start, leave, ampAuto, speakerAuto, ampTeleop, speakerTeleop, amped, pickup, skill, defense, speed, died, tip, dropped, comments];
   let strings = "";
   for (var i = 0; i < data.length; i++) {
