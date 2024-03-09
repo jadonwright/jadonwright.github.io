@@ -30,26 +30,39 @@ function updateScroll(scroll) {
     document.getElementById("section-autonomous-popup").style.display = "none";
     document.getElementById("section-teleop-popup").style.display = "none";
     document.getElementById("section-misc-popup").style.display = "none";
+    document.getElementById("section-endgame-popup").style.display = "none";
   } else if (window.scrollY >= 860 && window.scrollY < 1100) {
     document.getElementById("section-autonomous-popup").style.display = "block";
     document.getElementById("section-basic-info-popup").style.display = "none";
     document.getElementById("section-teleop-popup").style.display = "none";
     document.getElementById("section-misc-popup").style.display = "none";
+    document.getElementById("section-endgame-popup").style.display = "none";
   } else if (window.scrollY >= 1100 && window.scrollY < 1425) {
     document.getElementById("section-autonomous-popup").style.display = "none";
     document.getElementById("section-basic-info-popup").style.display = "none";
     document.getElementById("section-teleop-popup").style.display = "block";
     document.getElementById("section-misc-popup").style.display = "none";
+    document.getElementById("section-endgame-popup").style.display = "none";
   } else if (window.scrollY >= 1425 && window.scrollY < 2000) {
     document.getElementById("section-autonomous-popup").style.display = "none";
     document.getElementById("section-basic-info-popup").style.display = "none";
     document.getElementById("section-teleop-popup").style.display = "none";
     document.getElementById("section-misc-popup").style.display = "block";
+    document.getElementById("section-endgame-popup").style.display = "none";
+  } else if (window.scrollY >= 1900 && window.scrollY < 2500) {
+    document.getElementById("section-autonomous-popup").style.display = "none";
+    document.getElementById("section-basic-info-popup").style.display = "none";
+    document.getElementById("section-teleop-popup").style.display = "none";
+    document.getElementById("section-misc-popup").style.display = "none";
+    document.getElementById("section-endgame-popup").style.display = "block";
+
+
   } else {
     document.getElementById("section-basic-info-popup").style.display = "none";
     document.getElementById("section-autonomous-popup").style.display = "none";
     document.getElementById("section-teleop-popup").style.display = "none";
     document.getElementById("section-misc-popup").style.display = "none";
+    document.getElementById("section-endgame-popup").style.display = "none";
   }
   //var elements = document.getElementsByClassName()
 }
@@ -88,6 +101,7 @@ function increment(targetname) {
 }
 
 function getFormData() {
+  
   var initial = document.getElementById("scouter-initials").value;
   var level = getRadioData("level");
   var match = document.getElementById("metch-yes").value;
@@ -108,13 +122,82 @@ function getFormData() {
   var tip = String(document.querySelector(".tip").checked);
   var dropped = String(document.querySelector(".drop").checked);
   var comments = document.getElementById("comments").value.replace('\'', '');
-  let data = [initial, level, match, location, team, start, leave, ampAuto, speakerAuto, ampTeleop, speakerTeleop, amped, pickup, skill, defense, speed, died, tip, dropped, comments];
+  var time = document.getElementById("timer").innerText;
+  var statusFinal = getRadioData("finalPos");
+  var trap = String(document.querySelector(".trap").checked);
+  let data = [initial, level, match, location, team, start, leave, ampAuto, speakerAuto, ampTeleop, speakerTeleop, amped, pickup, skill, defense, speed, died, tip, dropped, comments, "", "", "", time, statusFinal, trap];
   let strings = "";
   for (var i = 0; i < data.length; i++) {
-    strings += String(data[i]) + "\t";
-  } 
+    if (String(data[i]) == "undefined" || String(data[i]) == "0" || String(data[i]) == "00:000") {
+      strings += "N/A" + "\t";
+    } else {
+      strings += String(data[i]) + "\t";
+    }
+    
+  }
   alert(strings);
-    return strings;
+  return strings;
+}
+
+let timerInterval;
+let milliseconds = 0;
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
+let running = false;
+
+function startStopTimer() {
+  if (!running) {
+    running = true;
+    document.getElementById('startStop').textContent = 'Stop';
+    timerInterval = setInterval(updateTimer, 10); // Update every 10 milliseconds
+  } else {
+    running = false;
+    document.getElementById('startStop').textContent = 'Start';
+    clearInterval(timerInterval);
+  }
+}
+
+function updateTimer() {
+  milliseconds++;
+  if (milliseconds === 100) {
+    milliseconds = 0;
+    seconds++;
+  }
+  if (seconds === 60) {
+    seconds = 0;
+    minutes++;
+  }
+  if (minutes === 60) {
+    minutes = 0;
+    hours++;
+  }
+  document.getElementById('timer').textContent = formatTime(seconds) + ':' + formatMilliseconds(milliseconds);
+}
+
+function formatTime(time) {
+  return time < 10 ? '0' + time : time;
+}
+
+function formatMilliseconds(milliseconds) {
+  if (milliseconds < 10) {
+    return '00' + milliseconds;
+  } else if (milliseconds < 100) {
+    return '0' + milliseconds;
+  } else {
+    return milliseconds;
+  }
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
+  milliseconds = 0;
+  seconds = 0;
+  minutes = 0;
+  hours = 0;
+  running = false;
+  document.getElementById('startStop').textContent = 'Start';
+  document.getElementById('timer').textContent = '00:000';
 }
 
 function getRadioData(elementName) {

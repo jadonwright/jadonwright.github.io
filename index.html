@@ -8,19 +8,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
-    
+
     <link rel="icon" type="image/x-icon" href="/assets/logo.ico">
     <link rel="stylesheet" href="src/style.css">
 </head>
 
 <body>
     <div id="epic-container">
-    <div class="title">
-        <h1 class="header">Perceptive</h1>
-        <p class="subheader">Team 4405 Scouting Solution</p>
-        
-    </div>
-    <img src="assets/logo.png" id="epic-logo">
+        <div class="title">
+            <h1 class="header">Perceptive</h1>
+            <p class="subheader">Team 4405 Scouting Solution</p>
+
+        </div>
+        <img src="assets/logo.png" id="epic-logo">
     </div>
     <div class="section">
         <h1 class="section-title" id="section-basic-info">Pre-Game</h1>
@@ -181,6 +181,49 @@
         </div>
     </div>
     <hr>
+    <div class="section" id="endgame">
+        <h1 class="section-title">Endgame</h1>
+        <h1 class="section-title floating-label" id="section-endgame-popup" style="display:none;z-index:24;">
+            Endgame</h1>
+        <div id="timer-container">
+            <button id="reset" onclick="resetTimer()">Reset</button>
+            <div id="timer">00:000</div>
+            <button id="startStop" onclick="startStopTimer()">Start</button>
+
+        </div>
+        <div id="final-pos">
+            <p class="basic-label">Final Status:</p>
+            <div class="radio-group" id="final-pos-group">
+                <input class="level radio" id="parked" type="radio" name="finalPos">
+                <p class="basic-label spaceBelow">Parked</p>
+            </div>
+            <div class="radio-group" id="final-pos-group">
+                <input class="level radio" id="onstage" type="radio" name="finalPos">
+                <p class="basic-label spaceBelow">Onstage</p>
+            </div>
+            <div class="radio-group" id="final-pos-group">
+                <input class="level radio" id="onstage-spotlit" type="radio" name="finalPos">
+                <p class="basic-label spaceBelow">Spotlit on Stage</p>
+            </div>
+            <div class="radio-group" id="final-pos-group">
+                <input class="level radio" id="harmony" type="radio" name="finalPos">
+                <p class="basic-label spaceBelow">Harmony</p>
+            </div>
+            <div class="radio-group" id="final-pos-group">
+                <input class="level radio" id="failed-attempt" type="radio" name="finalPos">
+                <p class="basic-label spaceBelow">Failed Attempt</p>
+            </div>
+            <div class="radio-group" id="final-pos-group">
+                <input class="level radio" id="no-attempt" type="radio" name="finalPos">
+                <p class="basic-label spaceBelow">No Attempt</p>
+            </div>
+        </div>
+        <div class="checkbox-group" id="trap">
+            <p class="basic-label thenInput" style="color:white">Trap Score: </p>
+            <input class="initials input trap" type="checkbox" required>
+        </div>
+    </div>
+    <hr>
     <div class="section" id="misc">
         <h1 class="section-title">Misc</h1>
         <h1 class="section-title floating-label" id="section-misc-popup" style="display:none;z-index:24;">
@@ -274,6 +317,7 @@
 
         </div>
         <div id="qrcontainer" style="margin-bottom:20px;">
+            
         </div>
     </div>
 

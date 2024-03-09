@@ -295,3 +295,32 @@ button {
     align-items: center;
     background-color: #bb00b8;
 }
+
+#timer-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: rgb(40, 40, 40);
+    border: 2px solid purple;
+    border-radius: 4px;
+    max-height: 20px;
+    overflow: hidden;
+    touch-action: manipulation;
+}
+
+#timer {
+    margin: 20px;
+    color: white;
+    overflow: visible;
+    width: 75px;
+    text-align: center;
+}
+
+#final-pos {
+    display: flex;
+    flex-direction: column;
+}
+
+.spaceBelow {
+    margin: 5px;
+}
