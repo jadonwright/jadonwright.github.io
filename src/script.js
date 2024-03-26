@@ -7,15 +7,24 @@
 // }
 
 document.addEventListener('DOMContentLoaded', function () {
-  var imageContainer = document.getElementById('image-container');
-  var selectedPosition = document.getElementById('selected-position');
+  var imageContainerStart = document.getElementById('image-cont-start');
+  var imageContainerEnd = document.getElementById('image-cont-end');
+  var selectedPositionStart = document.getElementById('selected-position-start');
+  var selectedPositionEnd = document.getElementById('selected-position-end');
 
-  imageContainer.addEventListener('click', function (event) {
+  imageContainerStart.addEventListener('click', function (event) {
     var x = event.pageX - this.offsetLeft;
     var y = event.pageY - this.offsetTop;
 
-    selectedPosition.style.left = (x - 5) + 'px'; // Adjust for the size of the dot
-    selectedPosition.style.top = (y - 5) + 'px'; // Adjust for the size of the dot
+    selectedPositionStart.style.left = (x - 5) + 'px'; // Adjust for the size of the dot
+    selectedPositionStart.style.top = (y - 5) + 'px'; // Adjust for the size of the dot
+  });
+  imageContainerEnd.addEventListener('click', function (event) {
+    var x = event.pageX - this.offsetLeft;
+    var y = event.pageY - this.offsetTop;
+
+    selectedPositionEnd.style.left = (x - 5) + 'px'; // Adjust for the size of the dot
+    selectedPositionEnd.style.top = (y - 5) + 'px'; // Adjust for the size of the dot
   });
 });
 
@@ -76,7 +85,12 @@ function generateQRCodeYay() {
   }
   var text = getFormData();
   document.getElementById("qrcontainer").innerHTML = "";
-  new QRCode(document.getElementById("qrcontainer"), text);
+  new QRCode(document.getElementById("qrcontainer"), {
+    text: text,
+    width: 375,
+    height: 375,
+    correctLevel: QRCode.CorrectLevel.H
+  });
   document.getElementById("generateQR").textContent = "Refresh QR Code";
 }
 function resetForm() {
@@ -101,13 +115,14 @@ function increment(targetname) {
 }
 
 function getFormData() {
-  
-  var initial = document.getElementById("scouter-initials").value;
+
+  var initial = document.getElementById("scouter-initials").value.toUpperCase();
   var level = getRadioData("level");
   var match = document.getElementById("metch-yes").value;
   var location = getRadioData("color");
   var team = document.getElementById("teams-num").value;
-  var start = document.getElementById("selected-position").style.left + "-" + document.getElementById("selected-position").style.top;
+  var start = document.getElementById("selected-position-start").style.left.replace(/[^0-9]/g, ''); + ", " + document.getElementById("selected-position-start").style.top.replace(/[^0-9]/g, '');;
+  var end = document.getElementById("selected-position-end").style.left.replace(/[^0-9]/g, ''); + ", " + document.getElementById("selected-position-end").style.top.replace(/[^0-9]/g, '');;
   var leave = String(document.querySelector(".leave-checkbox").checked);
   var ampAuto = document.getElementById("count-amp").innerText;
   var speakerAuto = document.getElementById("count-speaker").innerText;
@@ -118,14 +133,18 @@ function getFormData() {
   var skill = getRadioData("skill");
   var defense = getRadioData("defense");
   var speed = getRadioData("speed");
+  var intake = getRadioData("int");
+  var shooter = getRadioData("shoot");
   var died = String(document.querySelector(".died").checked);
   var tip = String(document.querySelector(".tip").checked);
   var dropped = String(document.querySelector(".drop").checked);
   var comments = document.getElementById("comments").value.replace('\'', '');
+  var commentsAuto = document.getElementById("comments-auton").value.replace('\'', '');
   var time = document.getElementById("timer").innerText;
   var statusFinal = getRadioData("finalPos");
   var trap = String(document.querySelector(".trap").checked);
   let data = [initial, level, match, location, team, start, leave, ampAuto, speakerAuto, ampTeleop, speakerTeleop, amped, pickup, skill, defense, speed, died, tip, dropped, comments, "", "", "", time, statusFinal, trap];
+  data = [team, initial, level, match, location, start, end, leave, ampAuto, speakerAuto, ampTeleop, speakerTeleop, amped, pickup, time, statusFinal, trap, skill, defense, speed, died, tip, dropped, comments]
   let strings = "";
   for (var i = 0; i < data.length; i++) {
     if (String(data[i]) == "undefined" || String(data[i]) == "0" || String(data[i]) == "00:000") {
@@ -133,7 +152,7 @@ function getFormData() {
     } else {
       strings += String(data[i]) + "\t";
     }
-    
+
   }
   alert(strings);
   return strings;

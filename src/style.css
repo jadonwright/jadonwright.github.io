@@ -107,20 +107,31 @@ html {
     padding: 5px;
 }
 
-#image-container {
+.image-container {
     position: relative;
     touch-action: manipulation;
 }
 
-#selected-position {
+.marker {
     position: absolute;
     width: 10px;
     height: 10px;
-    background-color: red;
     border-radius: 50%;
     top: 0px;
     left: 10px;
     touch-action: manipulation;
+}
+
+#selected-position-start {
+    background-color: #407c40;
+    outline: solid;
+    outline-color: #2f5a2f;
+}
+
+#selected-position-end {
+    background-color: #8b3838;
+    outline: solid;
+    outline-color: #642828;
 }
 
 .checkbox-group {
@@ -203,8 +214,14 @@ button {
     padding: 5px;
     margin: 0;
 }
-
-
+#intake-rating-group .basic-label {
+    padding: 5px;
+    margin: 0;
+}
+#shooter-rating-group .basic-label {
+    padding: 5px;
+    margin: 0;
+}
 .floating-label {
     display: block;
     width: 100vw;
@@ -257,7 +274,7 @@ button {
 }
 
 #qrcontainer {
-    overflow: hidden;
+    overflow:visible;
 }
 
 .comments {
@@ -267,7 +284,6 @@ button {
 .comment-group p {
     width: fit-content;
 }
-
 /* #generateQR {
     width: calc(100vw / 2);
     margin-bottom: 10px;
@@ -323,4 +339,17 @@ button {
 
 .spaceBelow {
     margin: 5px;
+}
+
+#next {
+    display: flex;
+    align-items: center;
+    background-color: rgb(40, 40, 40);
+    border: 2px solid purple;
+    border-radius: 4px;
+    max-height: 20px;
+    padding: 15px;
+    overflow: hidden;
+    touch-action: manipulation;
+    font-family: "Aldrich", sans-serif;
 }

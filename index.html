@@ -92,12 +92,21 @@
         </div>
 
         <div class="separator-border"></div>
-        <p class="basic-label" style="color:white; margin: 0;">Select the robots starting position:</p>
-        <p class="sublabel" style="color:rgb(104, 104, 104);  margin-top: 0;">(click to place marker)</p>
-        <div id="image-container">
+        <p class="basic-label" style="color:white; margin: 0;">Select the robots <b style="color: #407c40;">starting</b> position:</p>
+        <p class="sublabel" style="color:rgb(104, 104, 104);  margin-top: 0;">(place marker then click "next")</p>
+        <div class="image-container" id="image-cont-start">
             <img id="selectable-image" src="assets/field.png" alt="Select Position on Image"
                 style="transform: scaleX(-1);">
-            <div id="selected-position"></div>
+            <div id="selected-position-start" class="marker"></div>
+            
+        </div>
+        <button id="next">Next</button>
+        <p class="basic-label" style="color:white; margin: 0;">Select the robots <b style="color: #8b3838;">ending</b>
+            position:</p>
+        <div class="image-container" id="image-cont-end">
+            <img id="selectable-image" src="assets/field.png" alt="Select Position on Image" style="transform: scaleX(-1);">
+            <div id="selected-position-end" class="marker"></div>
+        
         </div>
     </div>
     <hr>
@@ -110,20 +119,40 @@
             <input class="initials input leave-checkbox" type="checkbox" required>
         </div>
         <div class="counter-group" id="amp-scores">
-            <p class="basic-label thenInput" style="color:white">Amp Scores:</p>
+            <p class="basic-label thenInput" style="color:white">Amp Scored:</p>
             <div class="counter">
                 <button id="decrement" onclick="decrement('count-amp')">-</button>
                 <span class="count" id="count-amp">0</span>
                 <button id="increment" onclick="increment('count-amp')">+</button>
             </div>
         </div>
+        <div class="counter-group" id="amp-missed">
+            <p class="basic-label thenInput" style="color:white">Amp Missed:</p>
+            <div class="counter">
+                <button id="decrement" onclick="decrement('count-amp-miss')">-</button>
+                <span class="count" id="count-amp-miss">0</span>
+                <button id="increment" onclick="increment('count-amp-miss')">+</button>
+            </div>
+        </div>
         <div class="counter-group" id="speaker-scores">
-            <p class="basic-label thenInput" style="color:white">Speaker Scores:</p>
+            <p class="basic-label thenInput" style="color:white">Speaker Scored:</p>
             <div class="counter">
                 <button id="decrement" onclick="decrement('count-speaker')">-</button>
                 <span id="count-speaker" class="count">0</span>
                 <button id="increment" onclick="increment('count-speaker')">+</button>
             </div>
+        </div>
+        <div class="counter-group" id="speaker-missed">
+            <p class="basic-label thenInput" style="color:white">Speaker Missed:</p>
+            <div class="counter">
+                <button id="decrement" onclick="decrement('count-speaker-missed')">-</button>
+                <span id="count-speaker-missed" class="count">0</span>
+                <button id="increment" onclick="increment('count-speaker-missed')">+</button>
+            </div>
+        </div>
+        <div class="comment-group">
+            <p class="basic-label" style="color:white">Comments:</p>
+            <input class="comments input" type="text" id="comments-auton" required>
         </div>
     </div>
     <hr>
@@ -185,6 +214,7 @@
         <h1 class="section-title">Endgame</h1>
         <h1 class="section-title floating-label" id="section-endgame-popup" style="display:none;z-index:24;">
             Endgame</h1>
+        <p class="basic-label">Stage Timer:</p>
         <div id="timer-container">
             <button id="reset" onclick="resetTimer()">Reset</button>
             <div id="timer">00:000</div>
@@ -242,10 +272,6 @@
                 <input class="level radio" id="very-effective" type="radio" name="skill">
                 <p class="basic-label">Very Effective</p>
             </div>
-            <div class="radio-group" id="driver-skill-group">
-                <input class="level radio" id="too-lazy" type="radio" name="skill">
-                <p class="basic-label">Unobserved (too lazy to check)</p>
-            </div>
         </div>
         <div id="defense-rating">
             <p class="basic-label">Defense Rating</p>
@@ -260,10 +286,6 @@
             <div class="radio-group" id="defense-rating-group">
                 <input class="level radio" id="very-effective" type="radio" name="defense">
                 <p class="basic-label">Very Effective</p>
-            </div>
-            <div class="radio-group" id="defense-rating-group">
-                <input class="level radio" id="too-lazy" type="radio" name="defense">
-                <p class="basic-label">Unobserved (too lazy to check)</p>
             </div>
         </div>
         <div id="speed-rating">
@@ -289,6 +311,52 @@
                 <p class="basic-label">5 (fast)</p>
             </div>
         </div>
+        <div id="intake-rating">
+            <p class="basic-label">Intake Reliability:</p>
+            <div class="radio-group" id="intake-rating-group">
+                <input class="level radio" id="1" type="radio" name="int">
+                <p class="basic-label">1 (unreliable)</p>
+            </div>
+            <div class="radio-group" id="intake-rating-group">
+                <input class="level radio" id="2" type="radio" name="int">
+                <p class="basic-label">2</p>
+            </div>
+            <div class="radio-group" id="intake-rating-group">
+                <input class="level radio" id="3" type="radio" name="int">
+                <p class="basic-label">3</p>
+            </div>
+            <div class="radio-group" id="intake-rating-group">
+                <input class="level radio" id="4" type="radio" name="int">
+                <p class="basic-label">4</p>
+            </div>
+            <div class="radio-group" id="intake-rating-group">
+                <input class="level radio" id="5" type="radio" name="int">
+                <p class="basic-label">5 (reliable)</p>
+            </div>
+        </div>
+        <div id="shooter-rating">
+            <p class="basic-label">Shooter Reliability:</p>
+            <div class="radio-group" id="shooter-rating-group">
+                <input class="level radio" id="1" type="radio" name="shoot">
+                <p class="basic-label">1 (unreliable)</p>
+            </div>
+            <div class="radio-group" id="shooter-rating-group">
+                <input class="level radio" id="2" type="radio" name="shoot">
+                <p class="basic-label">2</p>
+            </div>
+            <div class="radio-group" id="shooter-rating-group">
+                <input class="level radio" id="3" type="radio" name="shoot">
+                <p class="basic-label">3</p>
+            </div>
+            <div class="radio-group" id="shooter-rating-group">
+                <input class="level radio" id="4" type="radio" name="shoot">
+                <p class="basic-label">4</p>
+            </div>
+            <div class="radio-group" id="shooter-rating-group">
+                <input class="level radio" id="5" type="radio" name="shoot">
+                <p class="basic-label">5 (reliable)</p>
+            </div>
+        </div>
     </div>
     <div id="final-inputs" class="section">
         <div class="checkbox-group" id="died">
@@ -310,14 +378,15 @@
         <div class="separator-border" style="margin: 30px"></div>
         <div id="qrcode-zone">
 
-            <button id="generateQR" onclick="generateQRCodeYay()" style="margin-bottom:10px;">Generate QR Code</button>
+            <button id="generateQR" onclick="generateQRCodeYay(false)" style="margin-bottom:10px;">Generate QR
+                Code</button>
             <button id="resetForm" onclick="resetForm()" style="margin-left:5px;margin-bottom:10px;">Reset Form</button>
             <script src="src/script.js"></script>
             <script src="libs/qrcode/qrcode.js"></script>
 
         </div>
         <div id="qrcontainer" style="margin-bottom:20px;">
-            
+
         </div>
     </div>
 
