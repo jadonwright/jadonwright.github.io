@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" manifest="manifest.json">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>4405 Perceptive Position decoder</title>
+    <link rel="icon" type="image/x-icon" href="../assets/logo.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="separator-border"></div>
+    <p class="basic-label thenInput"  style="color:white; margin-top: 5px;">Paste the robot's <b
+            style="color: #407c40;">starting</b> position:</p>
+    <input id="start" class="input" >
+    <div class="image-container" id="image-cont-start">
+        <img id="selectable-image" src="../assets/field.png" alt="Select Position on Image"
+            style="transform: scaleX(-1);">
+        <div id="selected-position-start" class="marker"></div>
+
+    </div>
+    <p class="basic-label" style="color:white; margin-top: 5px;">Paste the robot's <b style="color: #8b3838;">ending</b>
+        position:</p>
+    <input id="end" class="input" type="text" >
+    <div class="image-container" id="image-cont-end">
+        <img id="selectable-image" src="../assets/field.png" alt="Select Position on Image"
+            style="transform: scaleX(-1);">
+        <div id="selected-position-end" class="marker"></div>
+        
+    </div>
+    <button onclick="go()">go</button>
+    <script>
+        function go() {
+            var selectedPositionStart = document.getElementById('selected-position-start');
+            var selectedPositionEnd = document.getElementById('selected-position-end');
+            let start = document.getElementById('start').value.split(", ");
+            let end = document.getElementById('end').value.split(", ");
+
+            selectedPositionEnd.style.left = (end[0] - 5) + 'px'; 
+            selectedPositionEnd.style.top = (end[1] - 5) + 'px';
+
+            selectedPositionStart.style.left = (start[0] - 5) + 'px';
+            selectedPositionStart.style.top = (start[1] - 5) + 'px';
+
+
+        }
+
+
+    </script>
+</body>
