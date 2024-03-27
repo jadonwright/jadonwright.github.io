@@ -85,33 +85,77 @@ function generateQRCodeYay() {
   }
   var text = getFormData();
   document.getElementById("qrcontainer").innerHTML = "";
-  new QRCode(document.getElementById("qrcontainer"), {
-    text: text,
-    width: 375,
-    height: 375,
-    correctLevel: QRCode.CorrectLevel.H
-  });
+  try {
+    new QRCode(document.getElementById("qrcontainer"), {
+      text: text,
+      width: 375,
+      height: 375,
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  } catch (error) {
+    alert("Error: " + error);
+    new QRCode(document.getElementById("qrcontainer"), {
+      text: text,
+      width: 375,
+      height: 375,
+      correctLevel: QRCode.CorrectLevel.L
+    });
+  }
   document.getElementById("generateQR").textContent = "Refresh QR Code";
 }
 function resetForm() {
   self.location = self.location;
 }
 
+function calcPercent(value, a, b) {
+  console.log(a, b)
+  let val = String(Math.round((a / (a + b)) * 100))
+  let style = "style=\"color: rgb(187, 0, 184)\""
+  if (val == "NaN") {
+    val = "0"
+    style = ""
+  }
+  value.innerHTML = "Amp Acc: <b "+style+">" + val + "%</b>";
+}
+
 
 // Owen's version
-function decrement(targetname) {
+function decrement(targetname, child = null, out = null) {
   var currentElem = document.getElementById(targetname);
   var value = Number(currentElem.textContent);
   if (value > 0) {
     value--;
   }
   currentElem.textContent = value;
+  if (child) {
+    calcPercent(document.getElementById(out), value, Number(document.getElementById(child).textContent));
+  }
 }
-function increment(targetname) {
+function increment(targetname, child = null, out = null) {
   var currentElem = document.getElementById(targetname);
   var value = Number(currentElem.textContent);
   value++;
   currentElem.textContent = value;
+  if (child) {
+    calcPercent(document.getElementById(out), value, Number(document.getElementById(child).textContent));
+  }
+}
+
+function decrementmiss(targetname, parent, out) {
+  var currentElem = document.getElementById(targetname);
+  var value = Number(currentElem.textContent);
+  if (value > 0) {
+    value--;
+  }
+  currentElem.textContent = value;
+  calcPercent(document.getElementById(out), Number(document.getElementById(parent).textContent), value);
+}
+function incrementmiss(targetname, parent, out) {
+  var currentElem = document.getElementById(targetname);
+  var value = Number(currentElem.textContent);
+  value++;
+  currentElem.textContent = value;
+  calcPercent(document.getElementById(out), Number(document.getElementById(parent).textContent), value);
 }
 
 function getFormData() {
@@ -121,9 +165,9 @@ function getFormData() {
   var match = document.getElementById("metch-yes").value;
   var location = getRadioData("color");
   var team = document.getElementById("teams-num").value;
-  var start = document.getElementById("selected-position-start").style.left.replace(/[^0-9]/g, ''); + ", " + document.getElementById("selected-position-start").style.top.replace(/[^0-9]/g, '');;
-  var end = document.getElementById("selected-position-end").style.left.replace(/[^0-9]/g, ''); + ", " + document.getElementById("selected-position-end").style.top.replace(/[^0-9]/g, '');;
-  var leave = String(document.querySelector(".leave-checkbox").checked);
+  var start = document.getElementById("selected-position-start").style.left.replace(/[^0-9\.]+/g, '') + ", " + document.getElementById("selected-position-start").style.top.replace(/[^0-9\.]+/g, '');
+  var end = document.getElementById("selected-position-end").style.left.replace(/[^0-9\.]+/g, '') + ", " + document.getElementById("selected-position-end").style.top.replace(/[^0-9\.]+/g, '');
+  var leave = String(document.querySelector(".leave-checkbox").checked).toUpperCase();
   var ampAuto = document.getElementById("count-amp").innerText;
   var speakerAuto = document.getElementById("count-speaker").innerText;
   var ampTeleop = document.getElementById("count-amp-tele").innerText;
@@ -135,20 +179,34 @@ function getFormData() {
   var speed = getRadioData("speed");
   var intake = getRadioData("int");
   var shooter = getRadioData("shoot");
-  var died = String(document.querySelector(".died").checked);
-  var tip = String(document.querySelector(".tip").checked);
-  var dropped = String(document.querySelector(".drop").checked);
+  var died = String(document.querySelector(".died").checked).toUpperCase();
+  var tip = String(document.querySelector(".tip").checked).toUpperCase();
+  var dropped = String(document.querySelector(".drop").checked).toUpperCase();
   var comments = document.getElementById("comments").value.replace('\'', '');
   var commentsAuto = document.getElementById("comments-auton").value.replace('\'', '');
   var time = document.getElementById("timer").innerText;
   var statusFinal = getRadioData("finalPos");
-  var trap = String(document.querySelector(".trap").checked);
-  let data = [initial, level, match, location, team, start, leave, ampAuto, speakerAuto, ampTeleop, speakerTeleop, amped, pickup, skill, defense, speed, died, tip, dropped, comments, "", "", "", time, statusFinal, trap];
-  data = [team, initial, level, match, location, start, end, leave, ampAuto, speakerAuto, ampTeleop, speakerTeleop, amped, pickup, time, statusFinal, trap, skill, defense, speed, died, tip, dropped, comments]
+  var trap = String(document.querySelector(".trap").checked).toUpperCase();
+
+
+  var ampAutoMiss = document.getElementById("count-amp-miss").innerText;
+  var speakerAutoMiss = document.getElementById("count-speaker-missed").innerText;
+
+  var ampAutoAcc = document.getElementById("amp-acc-auto").innerText.replace(/[^0-9\.]+/g, "") + "%";
+  var speakerAutoAcc = document.getElementById("speaker-acc-auto").innerText.replace(/[^0-9\.]+/g, "") + "%";
+
+  var ampTeleopMiss = document.getElementById("count-amp").innerText;
+  var speakerTeleopMiss = document.getElementById("count-amp").innerText;
+
+  var ampAcc = document.getElementById("amp-acc").innerText.replace(/[^0-9\.]+/g, "") + "%";
+  var speakerAcc = document.getElementById("speaker-acc").innerText.replace(/[^0-9\.]+/g, "") + "%";
+
+  let data = [team, initial, level, match, location, start, end, leave, ampAuto, ampAutoMiss, ampAutoAcc, speakerAuto, speakerAutoMiss, speakerAutoAcc, commentsAuto, "", ampTeleop, ampTeleopMiss, ampAcc, speakerTeleop, speakerTeleopMiss, speakerAcc, amped, pickup, time, statusFinal, trap, skill, defense, speed, intake, shooter, died, tip, dropped, comments]
   let strings = "";
   for (var i = 0; i < data.length; i++) {
-    if (String(data[i]) == "undefined" || String(data[i]) == "0" || String(data[i]) == "00:000") {
-      strings += "N/A" + "\t";
+
+    if (String(data[i]) == "undefined" || String(data[i]) == "notext") {
+      strings += "" + "\t";
     } else {
       strings += String(data[i]) + "\t";
     }

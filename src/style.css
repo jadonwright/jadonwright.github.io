@@ -353,3 +353,7 @@ button {
     touch-action: manipulation;
     font-family: "Aldrich", sans-serif;
 }
+
+.withSpace {
+    margin-bottom: 18px;
+}

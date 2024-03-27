@@ -92,16 +92,14 @@
         </div>
 
         <div class="separator-border"></div>
-        <p class="basic-label" style="color:white; margin: 0;">Select the robots <b style="color: #407c40;">starting</b> position:</p>
-        <p class="sublabel" style="color:rgb(104, 104, 104);  margin-top: 0;">(place marker then click "next")</p>
+        <p class="basic-label withSpace" style="color:white; margin-top: 5px;">Select the robots <b style="color: #407c40;">starting</b> position:</p>
         <div class="image-container" id="image-cont-start">
             <img id="selectable-image" src="assets/field.png" alt="Select Position on Image"
                 style="transform: scaleX(-1);">
             <div id="selected-position-start" class="marker"></div>
             
         </div>
-        <button id="next">Next</button>
-        <p class="basic-label" style="color:white; margin: 0;">Select the robots <b style="color: #8b3838;">ending</b>
+        <p class="basic-label" style="color:white; margin-top: 5px;">Select the robots <b style="color: #8b3838;">ending</b>
             position:</p>
         <div class="image-container" id="image-cont-end">
             <img id="selectable-image" src="assets/field.png" alt="Select Position on Image" style="transform: scaleX(-1);">
@@ -121,38 +119,40 @@
         <div class="counter-group" id="amp-scores">
             <p class="basic-label thenInput" style="color:white">Amp Scored:</p>
             <div class="counter">
-                <button id="decrement" onclick="decrement('count-amp')">-</button>
+                <button id="decrement" onclick="decrement('count-amp', 'count-amp-miss', 'amp-acc-auto')">-</button>
                 <span class="count" id="count-amp">0</span>
-                <button id="increment" onclick="increment('count-amp')">+</button>
+                <button id="increment" onclick="increment('count-amp', 'count-amp-miss', 'amp-acc-auto')">+</button>
             </div>
         </div>
         <div class="counter-group" id="amp-missed">
             <p class="basic-label thenInput" style="color:white">Amp Missed:</p>
             <div class="counter">
-                <button id="decrement" onclick="decrement('count-amp-miss')">-</button>
+                <button id="decrement" onclick="decrementmiss('count-amp-miss', 'count-amp', 'amp-acc-auto')">-</button>
                 <span class="count" id="count-amp-miss">0</span>
-                <button id="increment" onclick="increment('count-amp-miss')">+</button>
+                <button id="increment" onclick="incrementmiss('count-amp-miss', 'count-amp', 'amp-acc-auto')">+</button>
             </div>
         </div>
+        <p class="basic-label thenInput" id="amp-acc-auto" style="color:white">Amp Acc: <b>0%</b></p>
         <div class="counter-group" id="speaker-scores">
             <p class="basic-label thenInput" style="color:white">Speaker Scored:</p>
             <div class="counter">
-                <button id="decrement" onclick="decrement('count-speaker')">-</button>
+                <button id="decrement" onclick="decrement('count-speaker', 'count-speaker-missed', 'speaker-acc-auto')">-</button>
                 <span id="count-speaker" class="count">0</span>
-                <button id="increment" onclick="increment('count-speaker')">+</button>
+                <button id="increment" onclick="increment('count-speaker', 'count-speaker-missed', 'speaker-acc-auto')">+</button>
             </div>
         </div>
         <div class="counter-group" id="speaker-missed">
             <p class="basic-label thenInput" style="color:white">Speaker Missed:</p>
             <div class="counter">
-                <button id="decrement" onclick="decrement('count-speaker-missed')">-</button>
+                <button id="decrement" onclick="decrementmiss('count-speaker-missed', 'count-speaker', 'speaker-acc-auto')">-</button>
                 <span id="count-speaker-missed" class="count">0</span>
-                <button id="increment" onclick="increment('count-speaker-missed')">+</button>
+                <button id="increment" onclick="incrementmiss('count-speaker-missed', 'count-speaker', 'speaker-acc-auto')">+</button>
             </div>
         </div>
+        <p class="basic-label thenInput" id="speaker-acc-auto" style="color:white">Speaker Acc: <b>0%</b></p>
         <div class="comment-group">
             <p class="basic-label" style="color:white">Comments:</p>
-            <input class="comments input" type="text" id="comments-auton" required>
+            <input class="comments input" type="text" id="comments-auton"required>
         </div>
     </div>
     <hr>
@@ -166,20 +166,40 @@
         <div class="counter-group" id="amp-scores">
             <p class="basic-label thenInput" style="color:white">Amp Scores:</p>
             <div class="counter">
-                <button id="decrement" onclick="decrement('count-amp-tele')">-</button>
+                <button id="decrement" onclick="decrement('count-amp-tele', 'count-amp-tele-miss', 'amp-acc')">-</button>
                 <span class="count" id="count-amp-tele">0</span>
-                <button id="increment" onclick="increment('count-amp-tele')">+</button>
+                <button id="increment" onclick="increment('count-amp-tele', 'count-amp-tele-miss', 'amp-acc')">+</button>
             </div>
         </div>
+
+        <div class="counter-group" id="amp-scores-missed">
+            <p class="basic-label thenInput" style="color:white">Amp Missed:</p>
+            <div class="counter">
+                <button id="decrement" onclick="decrementmiss('count-amp-tele-miss', 'count-amp-tele', 'amp-acc')">-</button>
+                <span class="count" id="count-amp-tele-miss">0</span>
+                <button id="increment" onclick="incrementmiss('count-amp-tele-miss', 'count-amp-tele', 'amp-acc')">+</button>
+            </div>
+        </div>
+        <p class="basic-label thenInput" id="amp-acc" style="color:white">Amp Acc: <b>0%</b></p>
 
         <div class="counter-group" id="speaker-scores">
             <p class="basic-label thenInput" style="color:white">Speaker Scores:</p>
             <div class="counter">
-                <button id="decrement" onclick="decrement('count-speaker-tele')">-</button>
+                <button id="decrement" onclick="decrement('count-speaker-tele', 'count-speaker-tele-miss', 'speaker-acc')">-</button>
                 <span class="count" id="count-speaker-tele">0</span>
-                <button id="increment" onclick="increment('count-speaker-tele')">+</button>
+                <button id="increment" onclick="increment('count-speaker-tele', 'count-speaker-tele-miss', 'speaker-acc')">+</button>
             </div>
         </div>
+
+        <div class="counter-group" id="speaker-scores-missed">
+            <p class="basic-label thenInput" style="color:white">Speaker Missed:</p>
+            <div class="counter">
+                <button id="decrement" onclick="decrementmiss('count-speaker-tele-miss', 'count-speaker-tele', 'speaker-acc')">-</button>
+                <span class="count" id="count-speaker-tele-miss">0</span>
+                <button id="increment" onclick="incrementmiss('count-speaker-tele-miss', 'count-speaker-tele', 'speaker-acc')">+</button>
+            </div>
+        </div>
+        <p class="basic-label thenInput" id="speaker-acc" style="color:white">Speaker Acc: <b>0%</b></p>
         <div class="counter-group" id="times-amplified">
             <p class="basic-label thenInput" style="color:white">Times Amplified:</p>
             <div class="counter">
@@ -289,7 +309,7 @@
             </div>
         </div>
         <div id="speed-rating">
-            <p class="basic-label">Defense Rating</p>
+            <p class="basic-label">Speed Rating</p>
             <div class="radio-group" id="speed-rating-group">
                 <input class="level radio" id="1" type="radio" name="speed">
                 <p class="basic-label">1 (slow)</p>
@@ -312,49 +332,42 @@
             </div>
         </div>
         <div id="intake-rating">
-            <p class="basic-label">Intake Reliability:</p>
+            <p class="basic-label">Intake Quality:</p>
             <div class="radio-group" id="intake-rating-group">
-                <input class="level radio" id="1" type="radio" name="int">
-                <p class="basic-label">1 (unreliable)</p>
+                <input class="level radio" id="Bad" type="radio" name="int">
+                <p class="basic-label">Unreliable/Slow</p>
             </div>
             <div class="radio-group" id="intake-rating-group">
-                <input class="level radio" id="2" type="radio" name="int">
-                <p class="basic-label">2</p>
+                <input class="level radio" id="Okay" type="radio" name="int">
+                <p class="basic-label">Decent/Average</p>
             </div>
             <div class="radio-group" id="intake-rating-group">
-                <input class="level radio" id="3" type="radio" name="int">
-                <p class="basic-label">3</p>
+                <input class="level radio" id="Perfect" type="radio" name="int">
+                <p class="basic-label">Reliable/Fast</p>
             </div>
             <div class="radio-group" id="intake-rating-group">
-                <input class="level radio" id="4" type="radio" name="int">
-                <p class="basic-label">4</p>
-            </div>
-            <div class="radio-group" id="intake-rating-group">
-                <input class="level radio" id="5" type="radio" name="int">
-                <p class="basic-label">5 (reliable)</p>
+                <input class="level radio" id="notext" type="radio" name="int">
+                <p class="basic-label">No Intake</p>
             </div>
         </div>
         <div id="shooter-rating">
-            <p class="basic-label">Shooter Reliability:</p>
+            <p class="basic-label">Shooter Quality:</p>
+            
             <div class="radio-group" id="shooter-rating-group">
-                <input class="level radio" id="1" type="radio" name="shoot">
-                <p class="basic-label">1 (unreliable)</p>
+                <input class="level radio" id="Bad" type="radio" name="shoot">
+                <p class="basic-label">Unreliable/Misses</p>
             </div>
             <div class="radio-group" id="shooter-rating-group">
-                <input class="level radio" id="2" type="radio" name="shoot">
-                <p class="basic-label">2</p>
+                <input class="level radio" id="Okay" type="radio" name="shoot">
+                <p class="basic-label">Good/Misses Sometimes</p>
             </div>
             <div class="radio-group" id="shooter-rating-group">
-                <input class="level radio" id="3" type="radio" name="shoot">
-                <p class="basic-label">3</p>
+                <input class="level radio" id="Perfect" type="radio" name="shoot">
+                <p class="basic-label">Reliable/Consistent</p>
             </div>
             <div class="radio-group" id="shooter-rating-group">
-                <input class="level radio" id="4" type="radio" name="shoot">
-                <p class="basic-label">4</p>
-            </div>
-            <div class="radio-group" id="shooter-rating-group">
-                <input class="level radio" id="5" type="radio" name="shoot">
-                <p class="basic-label">5 (reliable)</p>
+                <input class="level radio" id="notext" type="radio" name="shoot">
+                <p class="basic-label">No Shooter</p>
             </div>
         </div>
     </div>
