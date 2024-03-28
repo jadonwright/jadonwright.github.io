@@ -205,7 +205,7 @@ function getFormData() {
   let strings = "";
   for (var i = 0; i < data.length; i++) {
 
-    if (String(data[i]) == "undefined" || String(data[i]) == "notext") {
+    if (String(data[i]) == "undefined" || String(data[i]) == "notext" || String(data[i]) == ", ") {
       strings += "" + "\t";
     } else {
       strings += String(data[i]) + "\t";
