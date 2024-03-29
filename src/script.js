@@ -88,16 +88,12 @@ function generateQRCodeYay() {
   try {
     new QRCode(document.getElementById("qrcontainer"), {
       text: text,
-      width: 375,
-      height: 375,
       correctLevel: QRCode.CorrectLevel.H
     });
   } catch (error) {
     alert("Error: " + error);
     new QRCode(document.getElementById("qrcontainer"), {
       text: text,
-      width: 375,
-      height: 375,
       correctLevel: QRCode.CorrectLevel.L
     });
   }
