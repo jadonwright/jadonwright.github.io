@@ -290,9 +290,9 @@ var cookies = {
     document.cookie = name + "=" + encodeURIComponent(value) + "; path=/";
   },
   getCookie: function(name) {
-    var cookies = document.cookie.split(";");
-    cookies.forEach(function (value) {
-      workWith = value.split["="];
+    var decookies = document.cookie.split(";");
+    decookies.forEach(function (value) {
+      var workWith = value.split["="];
       if (workWith[0] == name) {
         return decodeURIComponent(workWith[1]);
       }
