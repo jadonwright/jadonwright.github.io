@@ -282,3 +282,20 @@ function getRadioData(elementName) {
     }
   }
 }
+
+
+
+var cookies = {
+  save: function(name, value) {
+    document.cookie = name + "=" + encodeURIComponent(value) + "; path=/";
+  },
+  getCookie: function(name) {
+    var cookies = document.cookie.split(";");
+    cookies.forEach(function (value) {
+      workWith = value.split["="];
+      if (workWith[0] == name) {
+        return decodeURIComponent(workWith[1]);
+      }
+    })
+  }
+}
