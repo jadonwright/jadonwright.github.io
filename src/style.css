@@ -26,19 +26,35 @@ html {
     margin: 0;
     padding: 0;
 }
-/*.radio-dot {
+
+.radio-group label {
+    color:white;
+}
+.radio-group label {
+    color:white;
+}
+.delabel {
+    line-height:40px;
+    color:white;
+}
+.radio-dot {
     background-color:rgb(50, 50, 50);
     border:3px solid purple;
     border-radius:10px;
     width:20px;
     height:20px;
+    display:inline-block;
+    position:relative;
+    top:5px;
 }
 .radio {
     appearance:none;
 }
 .radio:checked + .radio-dot {
     background-color:purple;
-}*/
+}
+
+
 .subheader {
     margin: 0;
     padding-top: 10px;
@@ -101,6 +117,7 @@ html {
 
 .basic-label {
     color: white;
+    display:inline-block;
 }
 
 #robot {
