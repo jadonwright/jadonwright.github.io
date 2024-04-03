@@ -150,7 +150,17 @@ function calcPercent(value, a, b) {
   value.innerHTML = "Accuracy: <b "+style+">" + val + "%</b>";
 }
 
-
+function test4405() {
+  if (document.getElementById("teams-num").value == "4405") {
+    document.body.innerHTML += `
+    <div id="unnecessarybanner" style="background-color:black; position:fixed; top:0px; left:0px; width:100vw; height:100vh; z-index:20;">
+    <h1 style="color:rgb(0,255,0); font-family:sans-serif; font-size:70px; text-align:center; margin-top:200px;">YAY<br>4405</h1></div>
+    `
+    setTimeout(function() {
+      document.getElementById("unnecessarybanner").style.display = "none";
+    },3000)
+  }
+}
 // Owen's version
 function decrement(targetname, child = null, out = null) {
   var currentElem = document.getElementById(targetname);
