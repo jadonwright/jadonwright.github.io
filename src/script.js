@@ -5,7 +5,37 @@
 //     navigator.serviceWorker.register("./sw.js");
 //   }
 // }
+var supremeData = {
+  initials:"",
+  match:0,
+  selected_match: "_unset",
+  whichbot:"_unset",
+}
+var cookies = {
+  save: function(name, value) {
+    var d = new Date();
+    d.setTime(d.getTime() + 4 * 24 * 60 * 60 * 1000);
+    document.cookie = name + "=" + encodeURIComponent(value) + "; path=/; expires=" + d.toUTCString();
+  },
+  getCookie: function(name) {
+    var decookies = document.cookie.split("; ");
+    var returnadoodle;
+    decookies.forEach(function (value) {
+      var workWith = value.split("=");
+      if (workWith[0] == name) {
+        returnadoodle =  decodeURIComponent(workWith[1]);
+      }
+    })
+    return returnadoodle;
+  }
+}
 
+if (cookies.getCookie("INITIATED") != undefined) {
+  document.getElementById("scouter-initials").value = cookies.getCookie("initials");
+  document.getElementById(cookies.getCookie("selected_match")).checked = true;
+  document.getElementById(cookies.getCookie("whichbot")).checked = true;
+  document.getElementById("metch-yes").value = Number(cookies.getCookie("match")) +1;
+}
 document.addEventListener('DOMContentLoaded', function () {
   var imageContainerStart = document.getElementById('image-cont-start');
   var imageContainerEnd = document.getElementById('image-cont-end');
@@ -34,36 +64,36 @@ document.addEventListener('DOMContentLoaded', function () {
 document.getElementById("section-basic-info-popup").style.transition = "background-color 0.5s, color 0.5s";
 document.onscroll = updateScroll;
 function updateScroll(scroll) {
-  if (window.scrollY > 110 && window.scrollY < 860) {
+  if (window.scrollY > 135 && window.scrollY < 1087) {
     document.getElementById("section-basic-info-popup").style.display = "block";
     document.getElementById("section-autonomous-popup").style.display = "none";
     document.getElementById("section-teleop-popup").style.display = "none";
     document.getElementById("section-misc-popup").style.display = "none";
     document.getElementById("section-endgame-popup").style.display = "none";
-  } else if (window.scrollY >= 860 && window.scrollY < 1100) {
+  } else if (window.scrollY >= 1087 && window.scrollY < 1592) {
     document.getElementById("section-autonomous-popup").style.display = "block";
     document.getElementById("section-basic-info-popup").style.display = "none";
     document.getElementById("section-teleop-popup").style.display = "none";
     document.getElementById("section-misc-popup").style.display = "none";
     document.getElementById("section-endgame-popup").style.display = "none";
-  } else if (window.scrollY >= 1100 && window.scrollY < 1425) {
+  } else if (window.scrollY >= 1592 && window.scrollY < 2143) {
     document.getElementById("section-autonomous-popup").style.display = "none";
     document.getElementById("section-basic-info-popup").style.display = "none";
     document.getElementById("section-teleop-popup").style.display = "block";
     document.getElementById("section-misc-popup").style.display = "none";
     document.getElementById("section-endgame-popup").style.display = "none";
-  } else if (window.scrollY >= 1425 && window.scrollY < 2000) {
-    document.getElementById("section-autonomous-popup").style.display = "none";
-    document.getElementById("section-basic-info-popup").style.display = "none";
-    document.getElementById("section-teleop-popup").style.display = "none";
-    document.getElementById("section-misc-popup").style.display = "block";
-    document.getElementById("section-endgame-popup").style.display = "none";
-  } else if (window.scrollY >= 1900 && window.scrollY < 2500) {
+  } else if (window.scrollY >= 2143 && window.scrollY < 2601) {
     document.getElementById("section-autonomous-popup").style.display = "none";
     document.getElementById("section-basic-info-popup").style.display = "none";
     document.getElementById("section-teleop-popup").style.display = "none";
     document.getElementById("section-misc-popup").style.display = "none";
     document.getElementById("section-endgame-popup").style.display = "block";
+  } else if (window.scrollY >= 2601 && window.scrollY < 4000000) {
+    document.getElementById("section-autonomous-popup").style.display = "none";
+    document.getElementById("section-basic-info-popup").style.display = "none";
+    document.getElementById("section-teleop-popup").style.display = "none";
+    document.getElementById("section-misc-popup").style.display = "block";
+    document.getElementById("section-endgame-popup").style.display = "none";
 
 
   } else {
@@ -98,6 +128,12 @@ function generateQRCodeYay() {
     });
   }
   document.getElementById("generateQR").textContent = "Refresh QR Code";
+  cookies.save("INITIATED","true");
+  cookies.save("match",document.getElementById("metch-yes").value);
+  cookies.save("initials",document.getElementById("scouter-initials").value.toUpperCase());
+  cookies.save("selected_match",getRadioData("level"));
+  cookies.save("whichbot",getRadioData("color"));
+
 }
 function resetForm() {
   self.location = self.location;
@@ -111,7 +147,7 @@ function calcPercent(value, a, b) {
     val = "0"
     style = ""
   }
-  value.innerHTML = "Amp Acc: <b "+style+">" + val + "%</b>";
+  value.innerHTML = "Accuracy: <b "+style+">" + val + "%</b>";
 }
 
 
@@ -285,17 +321,3 @@ function getRadioData(elementName) {
 
 
 
-var cookies = {
-  save: function(name, value) {
-    document.cookie = name + "=" + encodeURIComponent(value) + "; path=/";
-  },
-  getCookie: function(name) {
-    var decookies = document.cookie.split(";");
-    decookies.forEach(function (value) {
-      var workWith = value.split["="];
-      if (workWith[0] == name) {
-        return decodeURIComponent(workWith[1]);
-      }
-    })
-  }
-}

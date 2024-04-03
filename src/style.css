@@ -26,11 +26,24 @@ html {
     margin: 0;
     padding: 0;
 }
-
+/*.radio-dot {
+    background-color:rgb(50, 50, 50);
+    border:3px solid purple;
+    border-radius:10px;
+    width:20px;
+    height:20px;
+}
+.radio {
+    appearance:none;
+}
+.radio:checked + .radio-dot {
+    background-color:purple;
+}*/
 .subheader {
     margin: 0;
     padding-top: 10px;
     padding-bottom: 20px;
+    margin-left:30px;
 }
 
 
