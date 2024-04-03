@@ -37,6 +37,9 @@ html {
     line-height:40px;
     color:white;
 }
+#unnecessarybanner {
+    display:none;
+}
 .radio-dot {
     background-color:rgb(50, 50, 50);
     border:3px solid purple;
