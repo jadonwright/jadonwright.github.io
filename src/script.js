@@ -149,7 +149,7 @@ function calcPercent(value, a, b) {
   }
   value.innerHTML = "Accuracy: <b "+style+">" + val + "%</b>";
 }
-
+document.getElementById("teams-num").value = "";
 function test4405() {
   if (document.getElementById("teams-num").value == "4405") {
     document.getElementById("unnecessarybanner").style.display = "block";
