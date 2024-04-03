@@ -44,6 +44,7 @@ var jokes = [
 ];
 
 window.onload = () => {
+  window.scrollY = 0;
   document.getElementById("joke").innerText = jokes[Math.floor(Math.random() * jokes.length)]
 }
 var supremeData = {
