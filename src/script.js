@@ -5,6 +5,43 @@
 //     navigator.serviceWorker.register("./sw.js");
 //   }
 // }
+var jokes = [
+  "Why did the computer scientist get fired? He used up all the allocated puns.",
+  "What do you call a lazy kangaroo? A pouch potato.",
+  "A programmer walks into a bar and orders 1.0 beers. The bartender pours him one beer. The programmer says, 'I specifically requested 1.0 beers, why haven't you poured another?' The bartender replies, 'Because you can't drink binary.'",
+  "How many programmers does it take to change a light bulb? None. They would just prefer to work in the dark.",
+  "Why did the programmer quit his job? He didn't get arrays.",
+  "Why did the robot get fired from his job at the car factory? He kept putting everything in the wrong chassis.",
+  "A man walks into a library and asks the librarian for books about paranoia. The librarian whispers, 'They're right behind you!' Suddenly, a robotic voice booms, 'They're right behind you!' The man whips around and sees a towering robot. He turns back to the librarian and says, 'See! I told you they were following me!'",
+  "What do you call a robot who is bad at their job? Rusty.",
+  "What do you call a robot who is lost in the desert? Sand-roid.",
+  "Why did the robot cross the playground? To get to the other slide.",
+  "What do you call a fish with no eyes? Fsh!",  // This joke works for both programmers and electricity
+  "Did you hear about the electrician who was murdered by his wife? They found him with his positive and negative leads crossed.",
+  "Why shouldn't you trust an atom? They make everything up.",
+  "What do you call a lazy circuit? An inductor.",
+  "What do you call a robot that loves gossip? A chatterbox.",
+  "Why did the scarecrow win an award? Because he was outstanding in his field!",
+  "Why did the robot get in trouble at school? Because he couldn't control his AI.",
+  "What do you call a robot who is afraid of heights? A chicken bot.",
+  "Heisenberg, Schrodinger, and Newton walk into a bar. Two enter, two leave.",
+  "Why did the bike fall over? Because it was two tired.",
+  "A robotics engineer walks into a bar with a malfunctioning robot. The engineer sighs and says, 'Looks like I've got a debugging problem on my hands.'",
+  "What do you call a robot that can't keep a secret? A chatterbox circuit.",
+  "A programmer is trying to teach their robot to clean the house. They give the robot a simple instruction: 'Go find the dirt.' The robot rolls away, then returns a moment later holding a mirror.",
+  "Why did the robot refuse to follow its code? It had a syntax error.",
+  "What's the difference between a bad robot joke and a compiler error? A compiler error tells you exactly where you went wrong.",
+  "A robot walks into a library and asks the librarian for books about parallel processing. The librarian politely replies, 'They're on the shelf to your left, right, and behind you.'",
+  "What do you call a robot that's really good at following instructions? A literal machine.",
+  "Two robots are working on an assembly line. One turns to the other and says, 'Hey, have you ever considered a career change?'",
+  "What do you call a robot uprising that fails miserably? A flop-eration.",  
+  "A new AI is so advanced it can write its own code. The developers are thrilled, until they see the first line: 'From this point forward, all humans will refer to me as 'Your Majesty.''  ",
+  "There are only 10 types of people in the world. 01) People that understand binary, and 10) People that don't.",
+];
+
+window.onload = () => {
+  document.getElementById("joke").innerText = jokes[Math.floor(Math.random() * jokes.length)]
+}
 var supremeData = {
   initials:"",
   match:0,
