@@ -150,8 +150,12 @@ function calcPercent(value, a, b) {
   value.innerHTML = "Accuracy: <b "+style+">" + val + "%</b>";
 }
 document.getElementById("teams-num").value = "";
+var enabled = false;
+setTimeout(function() {
+  enabled = true;
+},5000);
 function test4405() {
-  if (document.getElementById("teams-num").value == "4405") {
+  if (document.getElementById("teams-num").value == "4405" && enabled) {
     document.getElementById("unnecessarybanner").style.display = "block";
     setTimeout(function() {
       document.getElementById("unnecessarybanner").style.display = "none";
