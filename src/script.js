@@ -43,10 +43,6 @@ var jokes = [
   "Hello. It's nice to meet you. I'm a robot joke. Is there anything else I can help you with?",
 ];
 
-window.onload = () => {
-  window.scrollTo(0,0);
-  document.getElementById("joke").innerText = jokes[Math.floor(Math.random() * jokes.length)]
-}
 var supremeData = {
   initials:"",
   match:0,
@@ -72,11 +68,15 @@ var cookies = {
   }
 }
 
-if (cookies.getCookie("INITIATED") != undefined) {
-  document.getElementById("scouter-initials").value = cookies.getCookie("initials");
-  document.getElementById(cookies.getCookie("selected_match")).checked = true;
-  document.getElementById(cookies.getCookie("whichbot")).checked = true;
-  document.getElementById("metch-yes").value = Number(cookies.getCookie("match")) +1;
+window.onload = () => {
+  window.scrollTo(0,0);
+  document.getElementById("joke").innerText = jokes[Math.floor(Math.random() * jokes.length)]
+  if (cookies.getCookie("INITIATED") != undefined) {
+    document.getElementById("scouter-initials").value = cookies.getCookie("initials");
+    document.getElementById(cookies.getCookie("selected_match")).checked = true;
+    document.getElementById(cookies.getCookie("whichbot")).checked = true;
+    document.getElementById("metch-yes").value = Number(cookies.getCookie("match")) +1;
+  }
 }
 document.addEventListener('DOMContentLoaded', function () {
   var imageContainerStart = document.getElementById('image-cont-start');
