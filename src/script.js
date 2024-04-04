@@ -78,6 +78,13 @@ window.onload = () => {
     document.getElementById("metch-yes").value = Number(cookies.getCookie("match")) +1;
   }
 }
+function withinBounds(x,y,x2,y2,r) {
+  console.log(Math.sqrt(Math.pow(x-x2,2) + Math.pow(y-y2,2)))
+  if (Math.sqrt(Math.pow(x-x2,2) + Math.pow(y-y2,2)) < r) {
+    console.log("WITHIN BOUNDS");
+    return true;
+  }
+}
 document.addEventListener('DOMContentLoaded', function () {
   var imageContainerStart = document.getElementById('image-cont-start');
   var imageContainerEnd = document.getElementById('image-cont-end');
@@ -88,6 +95,32 @@ document.addEventListener('DOMContentLoaded', function () {
     var x = event.pageX - this.offsetLeft;
     var y = event.pageY - this.offsetTop;
 
+    console.log(x + "," + y)
+    if (getRadioData("color").includes("red")) {
+      console.log("yes");
+      if (withinBounds(x,y,12,26,10)) {
+        x = 12;
+        y = 26;
+      } else if (withinBounds(x,y,25,49,10)) {
+        x = 25;
+        y = 49;
+      } else if (withinBounds(x,y,10,70,10)) {
+        x = 10;
+        y = 70;
+      }
+    } else {
+      if (withinBounds(x,y,277,50,10)) {
+        x = 277;
+        y = 50;
+      } else if (withinBounds(x,y,290,26,10)) {
+        x = 290;
+        y = 26;
+      } else if (withinBounds(x,y,290,72,10)) {
+        x = 290;
+        y = 72;
+      }
+
+    }
     selectedPositionStart.style.left = (x - 5) + 'px'; // Adjust for the size of the dot
     selectedPositionStart.style.top = (y - 5) + 'px'; // Adjust for the size of the dot
   });
