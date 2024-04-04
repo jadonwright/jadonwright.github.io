@@ -105,32 +105,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.getElementById("section-basic-info-popup").style.transition = "background-color 0.5s, color 0.5s";
 document.onscroll = updateScroll;
+var addTo = -20;
 function updateScroll(scroll) {
-  if (window.scrollY > 135 && window.scrollY < 1087) {
+  if (window.scrollY > 135 + addTo && window.scrollY < 1087 + addTo) {
     document.getElementById("section-basic-info-popup").style.display = "block";
     document.getElementById("section-autonomous-popup").style.display = "none";
     document.getElementById("section-teleop-popup").style.display = "none";
     document.getElementById("section-misc-popup").style.display = "none";
     document.getElementById("section-endgame-popup").style.display = "none";
-  } else if (window.scrollY >= 1087 && window.scrollY < 1592) {
+  } else if (window.scrollY >= 1087 + addTo && window.scrollY < 1592 + addTo) {
     document.getElementById("section-autonomous-popup").style.display = "block";
     document.getElementById("section-basic-info-popup").style.display = "none";
     document.getElementById("section-teleop-popup").style.display = "none";
     document.getElementById("section-misc-popup").style.display = "none";
     document.getElementById("section-endgame-popup").style.display = "none";
-  } else if (window.scrollY >= 1592 && window.scrollY < 2143) {
+  } else if (window.scrollY >= 1592 + addTo && window.scrollY < 2143 + addTo) {
     document.getElementById("section-autonomous-popup").style.display = "none";
     document.getElementById("section-basic-info-popup").style.display = "none";
     document.getElementById("section-teleop-popup").style.display = "block";
     document.getElementById("section-misc-popup").style.display = "none";
     document.getElementById("section-endgame-popup").style.display = "none";
-  } else if (window.scrollY >= 2143 && window.scrollY < 2601) {
+  } else if (window.scrollY >= 2143 + addTo && window.scrollY < 2601 + addTo) {
     document.getElementById("section-autonomous-popup").style.display = "none";
     document.getElementById("section-basic-info-popup").style.display = "none";
     document.getElementById("section-teleop-popup").style.display = "none";
     document.getElementById("section-misc-popup").style.display = "none";
     document.getElementById("section-endgame-popup").style.display = "block";
-  } else if (window.scrollY >= 2601 && window.scrollY < 4000000) {
+  } else if (window.scrollY >= 2601 + addTo && window.scrollY < 4000000 + addTo) {
     document.getElementById("section-autonomous-popup").style.display = "none";
     document.getElementById("section-basic-info-popup").style.display = "none";
     document.getElementById("section-teleop-popup").style.display = "none";
