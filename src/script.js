@@ -256,6 +256,7 @@ function generateQRCodeYay() {
       correctLevel: QRCode.CorrectLevel.L
     });
   }
+  document.getElementById("thetext").value = text;
   document.getElementById("generateQR").textContent = "Refresh QR Code";
   cookies.save("INITIATED","true");
   cookies.save("match",document.getElementById("metch-yes").value);
@@ -409,12 +410,13 @@ function getFormData() {
   for (var i = 0; i < data.length; i++) {
 
     if (String(data[i]) == "undefined" || String(data[i]) == "notext" || String(data[i]) == ", ") {
-      strings += "" + "\t";
+      strings += "\t";
     } else {
       strings += String(data[i]) + "\t";
     }
 
   }
+  console.log(strings);
   alert(strings);
   return strings;
 }
@@ -492,3 +494,11 @@ function getRadioData(elementName) {
 
 
 
+function copyText() {
+  var elem = document.getElementById("thetext");
+  
+  elem.select();
+  elem.setSelectionRange(0,9999);
+
+  navigator.clipboard.writeText(elem.value);
+}
