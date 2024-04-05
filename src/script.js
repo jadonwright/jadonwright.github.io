@@ -217,7 +217,36 @@ function generateQRCodeYay() {
 
 }
 function resetForm() {
-  self.location = self.location;
+  //self.location = self.location;
+  var prevBody = document.body.innerHTML;
+  document.body.innerHTML = prevBody;
+  window.scrollTo(0,0);
+  document.getElementById("joke").innerText = jokes[Math.floor(Math.random() * jokes.length)]
+  document.getElementById("selected-position-start").style.left = "0px";
+  document.getElementById("selected-position-end").style.left = "0px";
+  document.getElementById("selected-position-start").style.top = "0px";
+  document.getElementById("selected-position-end").style.top = "0px";
+  document.getElementById("count-amp").innerText = "0";
+  document.getElementById("count-speaker").innerText = "0";
+  document.getElementById("count-amp-tele").innerText = "0";
+  document.getElementById("count-speaker-tele").innerText = "0";
+  document.getElementById("count-amplification-tele").innerText = "0";
+  document.getElementById("count-amp-miss").innerText = "0";
+  document.getElementById("count-speaker-missed").innerText = "0";
+  document.getElementById("count-amp-tele-miss").innerText = "0";
+  document.getElementById("count-speaker-tele-miss").innerText = "0";
+  calcPercent(document.getElementById("speaker-acc"),0,0);
+  calcPercent(document.getElementById("amp-acc"),0,0);
+  calcPercent(document.getElementById("speaker-acc-auto"),0,0);
+  calcPercent(document.getElementById("amp-acc-auto"),0,0);
+  resetTimer();
+
+  if (cookies.getCookie("INITIATED") != undefined) {
+    document.getElementById("scouter-initials").value = cookies.getCookie("initials");
+    document.getElementById(cookies.getCookie("selected_match")).checked = true;
+    document.getElementById(cookies.getCookie("whichbot")).checked = true;
+    document.getElementById("metch-yes").value = Number(cookies.getCookie("match")) +1;
+  }
 }
 
 function calcPercent(value, a, b) {
@@ -319,8 +348,8 @@ function getFormData() {
   var ampAutoAcc = document.getElementById("amp-acc-auto").innerText.replace(/[^0-9\.]+/g, "") + "%";
   var speakerAutoAcc = document.getElementById("speaker-acc-auto").innerText.replace(/[^0-9\.]+/g, "") + "%";
 
-  var ampTeleopMiss = document.getElementById("count-amp").innerText;
-  var speakerTeleopMiss = document.getElementById("count-amp").innerText;
+  var ampTeleopMiss = document.getElementById("count-amp-tele-miss").innerText;
+  var speakerTeleopMiss = document.getElementById("count-speaker-tele-miss").innerText;
 
   var ampAcc = document.getElementById("amp-acc").innerText.replace(/[^0-9\.]+/g, "") + "%";
   var speakerAcc = document.getElementById("speaker-acc").innerText.replace(/[^0-9\.]+/g, "") + "%";
