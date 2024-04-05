@@ -283,6 +283,7 @@ function resetForm() {
   document.getElementById("count-speaker-missed").innerText = "0";
   document.getElementById("count-amp-tele-miss").innerText = "0";
   document.getElementById("count-speaker-tele-miss").innerText = "0";
+  document.getElementById("qrcontainer").innerHTML = "";
   calcPercent(document.getElementById("speaker-acc"),0,0);
   calcPercent(document.getElementById("amp-acc"),0,0);
   calcPercent(document.getElementById("speaker-acc-auto"),0,0);
