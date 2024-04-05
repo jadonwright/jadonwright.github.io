@@ -85,6 +85,54 @@ function withinBounds(x,y,x2,y2,r) {
     return true;
   }
 }
+function loading() {
+  var imageContainerStart = document.getElementById('image-cont-start');
+  var imageContainerEnd = document.getElementById('image-cont-end');
+  var selectedPositionStart = document.getElementById('selected-position-start');
+  var selectedPositionEnd = document.getElementById('selected-position-end');
+
+  imageContainerStart.addEventListener('click', function (event) {
+    var x = event.pageX - this.offsetLeft;
+    var y = event.pageY - this.offsetTop;
+
+    console.log(x + "," + y)
+    if (getRadioData("color").includes("red")) {
+      console.log("yes");
+      if (withinBounds(x,y,12,26,10)) {
+        x = 12;
+        y = 26;
+      } else if (withinBounds(x,y,25,49,10)) {
+        x = 25;
+        y = 49;
+      } else if (withinBounds(x,y,10,70,10)) {
+        x = 10;
+        y = 70;
+      }
+    } else {
+      if (withinBounds(x,y,277,50,10)) {
+        x = 277;
+        y = 50;
+      } else if (withinBounds(x,y,290,26,10)) {
+        x = 290;
+        y = 26;
+      } else if (withinBounds(x,y,290,72,10)) {
+        x = 290;
+        y = 72;
+      }
+
+    }
+    selectedPositionStart.style.left = (x - 5) + 'px'; // Adjust for the size of the dot
+    selectedPositionStart.style.top = (y - 5) + 'px'; // Adjust for the size of the dot
+  });
+  imageContainerEnd.addEventListener('click', function (event) {
+    var x = event.pageX - this.offsetLeft;
+    var y = event.pageY - this.offsetTop;
+
+    selectedPositionEnd.style.left = (x - 5) + 'px'; // Adjust for the size of the dot
+    selectedPositionEnd.style.top = (y - 5) + 'px'; // Adjust for the size of the dot
+  });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   var imageContainerStart = document.getElementById('image-cont-start');
   var imageContainerEnd = document.getElementById('image-cont-end');
@@ -240,6 +288,7 @@ function resetForm() {
   calcPercent(document.getElementById("speaker-acc-auto"),0,0);
   calcPercent(document.getElementById("amp-acc-auto"),0,0);
   resetTimer();
+  loading();
 
   if (cookies.getCookie("INITIATED") != undefined) {
     document.getElementById("scouter-initials").value = cookies.getCookie("initials");
