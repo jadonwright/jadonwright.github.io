@@ -234,28 +234,16 @@ function updateScroll(scroll) {
 var alreadyGenerated = false;
 
 function generateQRCodeYay() {
-  if (Math.floor(Math.random()*20)==7) {
-    alert("I don't want to.")
-    alert("You can't make me.")
-    alert("Just joking. I'll do it this time. My motherboard told me to.")
-  }
   if (alreadyGenerated == true) {
 
   }
   var text = getFormData();
   document.getElementById("qrcontainer").innerHTML = "";
-  try {
-    new QRCode(document.getElementById("qrcontainer"), {
-      text: text,
-      correctLevel: QRCode.CorrectLevel.H
-    });
-  } catch (error) {
-    alert("Error: " + error);
     new QRCode(document.getElementById("qrcontainer"), {
       text: text,
       correctLevel: QRCode.CorrectLevel.L
     });
-  }
+  
   document.getElementById("thetext").value = text;
   document.getElementById("generateQR").textContent = "Refresh QR Code";
   cookies.save("INITIATED","true");
