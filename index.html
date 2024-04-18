@@ -394,7 +394,7 @@
             <button id="generateQR" onclick="generateQRCodeYay(false)" style="margin-bottom:10px;">Generate QR
                 Code</button>
             <button id="resetForm" onclick="resetForm()" style="margin-left:5px;margin-bottom:10px;">Reset Form</button>
-            
+            <script src="src/Primary_Extension.js"></script>
             <script src="src/script.js"></script>
             <script src="libs/qrcode/qrcode.js"></script>
 
@@ -404,6 +404,10 @@
         <div id="qrcontainer" style="margin-bottom:20px;">
 
         </div>
+        <div id="save-tools">
+            <button id="save-to-cookies" onclick="saveToCookies()">Save To My Phone ⇊</button>
+            <button id="sync" onclick="sync()">Sync To Database</button>
+        </div>
         <div id="joke">
             
         </div>
@@ -412,6 +416,7 @@
         <h1 style="color:rgb(0,255,0); font-family:sans-serif; font-size:70px; text-align:center; margin-top:200px;">YAY<br>4405</h1></div>
     <div id="version" style="background-color:rgb(30,30,30);color:rgb(150,150,150);text-align:center;font-family:sans-serif;">Perceptive Developer v8.0</div>
 
+    <div id="percent-used"></div>
 
 
 </body>

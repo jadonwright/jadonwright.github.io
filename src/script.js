@@ -5,6 +5,15 @@
 //     navigator.serviceWorker.register("./sw.js");
 //   }
 // }
+
+
+/*
+
+CONSIDER AUTO-SAVE FUNCTION
+
+*/
+var defile = new fileAPI();
+
 var jokes = [
   "Why did the computer scientist get fired? He used up all the allocated puns.",
   "A programmer walks into a bar and orders 1.0 beers. The bartender pours him one beer. The programmer says, 'I specifically requested 1.0 beers, why haven't you poured another?' The bartender replies, 'Because you can't drink binary.'",
@@ -501,4 +510,61 @@ function copyText() {
   elem.setSelectionRange(0,9999);
 
   navigator.clipboard.writeText(elem.value);
+}
+
+function saveToCookies() {
+  if (Math.floor(Math.random()*20)==7) {
+    alert("I don't want to.")
+    alert("You can't make me.")
+    alert("Just joking. I'll do it this time. My motherboard told me to.")
+  }
+  var textencoder = new TextEncoder();
+  var text = getFormData();
+  document.getElementById("qrcontainer").innerHTML = "";
+  document.getElementById("thetext").value = text;
+
+  console.log("PREVIOUS TEXT WAS:\n",text);
+  console.log("ENCODED:\n",encodeURIComponent(text))
+  console.log("DECODED:\n",decodeURIComponent(encodeURIComponent(text)))
+
+  if (cookies.getCookie("SAVED_DATA") != undefined && cookies.getCookie("SAVED_DATA") != "blank") {
+    cookies.save("SAVED_DATA", cookies.getCookie("SAVED_DATA") + "!-!-!" + encodeURIComponent(text))
+  } else {
+    cookies.save("SAVED_DATA", encodeURIComponent(text))
+  }
+  cookies.save("INITIATED","true");
+  cookies.save("match",document.getElementById("metch-yes").value);
+  cookies.save("initials",document.getElementById("scouter-initials").value.toUpperCase());
+  cookies.save("selected_match",getRadioData("level"));
+  cookies.save("whichbot",getRadioData("color"));
+
+  var uinttext = textencoder.encode("SAVED_DATA=" + cookies.getCookie("SAVED_DATA"));
+
+
+  document.getElementById("percent-used").innerText = Math.floor(uinttext.byteLength/4096*100) + "%";
+}
+
+function sync() {
+  var cstring = cookies.getCookie("SAVED_DATA");
+  var success = true;
+  if (cstring != undefined && cstring != "blank") {
+    var tokens = cstring.split("!-!-!");
+    tokens.forEach(function(val) {
+      console.log("Saving Token: " + val);
+      defile.readFile("./src/save_to_database.php?num=" + Math.random() + "&data=" + val, function(text) {
+        console.log(text);
+        if (text.includes("uccess")) {
+
+        } else {
+          success = false;
+        }
+      });
+    })
+  }
+  if (success == true) {
+    alert("success");
+  } else {
+    alert("failure");
+  }
+  
 }
