@@ -430,10 +430,14 @@ function startStopTimer() {
     running = true;
     document.getElementById('startStop').textContent = 'Stop';
     timerInterval = setInterval(updateTimer, 10); // Update every 10 milliseconds
+    console.log(timerInterval);
   } else {
     running = false;
     document.getElementById('startStop').textContent = 'Start';
+    console.log("SSTOOOOPP")
+    console.log(timerInterval);
     clearInterval(timerInterval);
+    console.log(timerInterval)
   }
 }
 
@@ -537,9 +541,9 @@ function sync() {
   var success = true;
   if (cstring != undefined && cstring != "blank") {
     var tokens = cstring.split("!-!-!");
-    tokens.forEach(function(val) {
-      console.log("Saving Token: " + val);
-      defile.readFile("./src/save_to_database.php?num=" + Math.random() + "&data=" + val, function(text) {
+    tokens.forEach(function(val,ind) {
+      document.getElementById("percent-used").innerText = "Pushing " + ind;
+      defile.readFile("./src/save_to_database.php?num=" + Math.random() + "&data=" + val + encodeURIComponent("\n"), function(text) {
         console.log(text);
         if (text.includes("uccess")) {
 
@@ -551,8 +555,10 @@ function sync() {
   }
   if (success == true) {
     alert("success");
+    cookies.save("SAVED_DATA", "blank");
   } else {
     alert("failure");
   }
+  document.getElementById("percent-used").innerText = Math.floor(uinttext.byteLength/4096*100) + "%";
   
 }

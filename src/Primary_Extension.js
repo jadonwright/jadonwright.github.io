@@ -33,7 +33,7 @@ class oscript extends HTMLElement{
 }
 customElements.define("o-script",oscript);
 
-var windoriginal8734 = window.setInterval;
+/*var windoriginal8734 = window.setInterval;
 window.setInterval = function(func,time) {
     var j = windoriginal8734(func,time);
     _.intervals.push(j);
@@ -43,7 +43,7 @@ window.clearInterval = function(thing) {
     windclear8734(thing);
     var ind = _.intervals.indexOf(thing);
     _.intervals.splice(ind,1);
-}
+}*/
 var _ = {
     newTag:function(name,construct) {
         if (construct!="_blank") {
